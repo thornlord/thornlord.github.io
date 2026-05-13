@@ -52,22 +52,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   function updateUI() {
     const charClass = classSelect.value;
     const method = methodSelect.value;
-    const pCount = parseInt(physCountSelect.value);
-    const mCount = parseInt(mentCountSelect.value);
 
-    // Plantients cannot have mental mutations
-    if (charClass === 'plantient') {
+    // Reset disabled states and apply class-specific logic
+    if (charClass === 'manimal') {
+      // Manimals: Max 2 physical, Max 1 mental
+      if (parseInt(physCountSelect.value) > 2) physCountSelect.value = '2';
+      if (parseInt(mentCountSelect.value) > 1) mentCountSelect.value = '1';
+      physCountSelect.disabled = false;
+      mentCountSelect.disabled = false;
+    } else if (charClass === 'plantient') {
+      // Plantients: 0 mental mutations
       mentCountSelect.value = '0';
       mentCountSelect.disabled = true;
+      physCountSelect.disabled = false;
     } else {
+      // Mutants/Default: No restrictions
+      physCountSelect.disabled = false;
       mentCountSelect.disabled = false;
     }
+
+    const pCount = parseInt(physCountSelect.value);
+    const mCount = parseInt(mentCountSelect.value);
 
     // Manual Selection Logic
     if (method === 'select') {
       selectContainer.style.display = 'block';
       renderManualSelects(pCount, 'physical');
-      renderManualSelects(charClass === 'plantient' ? 0 : mCount, 'mental');
+      renderManualSelects(mCount, 'mental');
     } else {
       selectContainer.style.display = 'none';
       selectPhysContainer.innerHTML = '';
