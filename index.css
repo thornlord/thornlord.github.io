@@ -1,0 +1,705 @@
+/* index.css - MCC HAZARD TERMINAL THEME */
+/* @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+
+
+:root {
+  /* Default Glass Theme Variables */
+  --primary: #38bdf8;
+  --primary-hover: #7c3aed;
+  --secondary: #a78bfa;
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Font Variables */
+  --font-main: 'Inter', sans-serif;
+  --font-header: 'Outfit', sans-serif;
+}
+
+/* Terminal Theme Overrides */
+body.theme-terminal {
+  /* Acid Green */
+  --primary: #39ff14;
+  /* Hazard Yellow */
+  --secondary: #facc15;
+  /* Mutation Purple */
+  --accent: #d946ef;
+
+  --bg-dark: #0a0a0a;
+  --bg-card: rgba(18, 18, 18, 0.95);
+  --text-main: #39ff14;
+  --text-muted: #94a3b8;
+  --glass-border: rgba(57, 255, 20, 0.2);
+  --glass-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+
+  --font-main: 'Share Tech Mono', monospace;
+  --font-header: 'Rajdhani', sans-serif;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+body {
+  background: radial-gradient(circle at top right, #1e1b4b, #0f172a 60%, #000);
+  background-attachment: fixed;
+  color: #f1f5f9;
+  font-family: var(--font-main);
+  min-height: 100vh;
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+body.theme-terminal {
+  /* background-color: var(--bg-dark); */
+  background: #000;
+  background-image:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  /* color: var(--text-main);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; */
+}
+
+/* CRT Effects - Only visible in terminal theme */
+.crt-overlay,
+.scanline {
+  display: none;
+}
+
+body.theme-terminal .crt-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 100%),
+    rgba(18, 16, 16, 0.1);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body.theme-terminal .scanline {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 100% 4px;
+  animation: scanline 10s linear infinite;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.navbar-brand {
+  font-family: var(--font-header);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* .navbar-brand {
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: var(--glow);
+} */
+
+body.theme-terminal h1,
+body.theme-terminal h2,
+body.theme-terminal h3,
+body.theme-terminal h4,
+body.theme-terminal h5,
+body.theme-terminal .navbar-brand {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+body.theme-terminal .navbar {
+  background: #000 !important;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Navbar 
+.navbar {
+  background: var(--bg-dark) !important;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: var(--glow);
+} */
+
+.navbar-brand {
+  /*  color: var(--primary) !important;
+  font-size: 1.5rem; */
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+/* .navbar-brand:hover {
+  color: var(--secondary) !important;
+  color: var(--primary) !important;
+} */
+
+body.theme-terminal .navbar {
+  background: #000 !important;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Glass Panels 
+.glass-panel {
+  background: var(--bg-panel);
+  border: var(--hazard-border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.1), var(--glow);
+  margin-bottom: 2rem;
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid var(--secondary);
+  pointer-events: none;
+  opacity: 0.3;
+} */
+
+/* Glass Panels */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.theme-terminal .glass-panel {
+  backdrop-filter: none;
+  border-radius: 4px;
+  border-width: 2px;
+  box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.1), 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Form Elements */
+.form-control,
+.form-select {
+  /* background-color: #000 !important;
+  border: 1px solid var(--primary) !important;
+  color: var(--primary) !important;
+  font-family: 'Share Tech Mono', monospace;
+  border-radius: 0;
+  transition: all 0.3s ease; */
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+body.theme-terminal .form-control,
+body.theme-terminal .form-select {
+  background-color: #000 !important;
+  border: 1px solid var(--primary) !important;
+  border-radius: 0;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+  color: var(--text-main);
+}
+
+body.theme-terminal .form-control:focus,
+body.theme-terminal .form-select:focus {
+  box-shadow: 0 0 15px var(--primary);
+}
+
+/* .form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 15px var(--primary);
+  border-color: var(--secondary) !important;
+}
+
+.form-label,
+label,
+.text-sm-end {
+  color: var(--secondary);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.table-dark {
+  --bs-table-bg: rgba(57, 255, 20, 0.05) !important;
+  --bs-table-color: var(--primary) !important;
+  background-color: rgba(57, 255, 20, 0.05) !important;
+  border: 1px solid rgba(57, 255, 20, 0.2) !important;
+} */
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+/*background: var(--primary);
+  border: 2px solid var(--primary);
+  color: #000;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--glow);
+} */
+
+body.theme-terminal .btn-primary {
+  background: var(--primary);
+  color: #000;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: #000;
+  color: var(--primary);
+  box-shadow: 0 0 20px var(--primary);
+}
+
+.btn-outline-light {
+  border-radius: 0;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.btn-outline-light:hover {
+  background: var(--secondary);
+  color: #000;
+}
+
+/* Section Header */
+.section-header {
+  transition: all 0.5s ease;
+}
+
+.header-cool {
+  padding: 6rem 0 3rem;
+  text-align: center;
+}
+
+body.theme-terminal .header-cool {
+  padding: 8rem 0 4rem;
+  border-bottom: 1px dashed var(--primary);
+  margin-bottom: 3rem;
+}
+
+.header-cool h1 {
+  font-size: 3rem;
+  transition: all 0.5s ease;
+}
+
+body.theme-terminal .header-cool h1 {
+  font-size: 4rem;
+  color: var(--primary);
+}
+
+.header-cool .lead {
+  transition: all 0.5s ease;
+}
+
+body.theme-terminal .header-cool .lead {
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: #000;
+  border-top: 2px solid var(--primary);
+  padding: 4rem 0;
+  color: var(--text-muted);
+}
+
+/* --- Print & PDF Style (Purple Sorcerer Inspired) --- */
+@media print {
+  :root {
+    --text-main: #000;
+    --bg-dark: #fff;
+    --primary: #000;
+    --secondary: #000;
+    --accent: #000;
+  }
+
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    color: #000 !important;
+    font-family: 'Times New Roman', Times, serif !important;
+  }
+
+  .crt-overlay,
+  .scanline,
+  nav,
+  footer,
+  #btn-back,
+  .section-header {
+    display: none !important;
+  }
+
+  .glass-panel {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Mutation Card Layout */
+  .mutation-card {
+    page-break-before: always;
+    padding: 30px !important;
+    border-bottom: 2px solid #000 !important;
+    max-width: 7.5in !important;
+    margin: 0 auto !important;
+  }
+
+  .mutation-header {
+    color: #000 !important;
+    text-shadow: none !important;
+    font-family: serif !important;
+  }
+
+  .mutation-card h3 {
+    font-family: serif !important;
+    font-size: 20pt !important;
+    border-bottom: 3pt solid #000 !important;
+    margin-bottom: 5px !important;
+    margin-top: 0 !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    text-transform: uppercase;
+  }
+
+  .mutation-meta {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 15px !important;
+    font-weight: bold !important;
+    margin-bottom: 10px !important;
+    border-bottom: 1px solid #000 !important;
+    padding: 5px 0 !important;
+    background: none !important;
+    color: #000 !important;
+  }
+
+  .mutation-meta div {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 10pt !important;
+    color: #000 !important;
+  }
+
+  .mutation-description {
+    font-size: 10.5pt !important;
+    line-height: 1.4 !important;
+    margin-bottom: 20px !important;
+    color: #000 !important;
+    text-align: justify;
+  }
+
+  /* Tables */
+  .table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 10px !important;
+    font-size: 9pt !important;
+    border: 1.5pt solid #000 !important;
+  }
+
+  .table th,
+  .table td {
+    border: 1pt solid #000 !important;
+    padding: 4px !important;
+    text-align: left !important;
+    color: #000 !important;
+  }
+
+  .table-dark {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  .table-dark th {
+    background-color: #ddd !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+  }
+
+  h5 {
+    font-family: serif !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+    font-size: 11pt !important;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+    color: #000 !important;
+  }
+
+  /* Cover Page */
+  .cover-page {
+    height: 9in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    page-break-after: always;
+    border: 10pt double #000;
+    margin: 0.5in;
+  }
+
+  .cover-page h1 {
+    font-size: 48pt !important;
+    margin-bottom: 20px !important;
+    color: #000 !important;
+    text-shadow:
+      -1.5px -1.5px 0 #39ff14,
+      1.5px -1.5px 0 #39ff14,
+      -1.5px 1.5px 0 #39ff14,
+      1.5px 1.5px 0 #39ff14 !important;
+  }
+
+  .cover-page h3 {
+    font-size: 24pt !important;
+    color: #000 !important;
+  }
+
+  .cover-page img {
+    max-width: 70%;
+    margin-bottom: 40px;
+    filter: grayscale(100%);
+  }
+}
+
+/* Also apply same styles when the .pdf-export-mode class is active on body */
+body.pdf-export-mode {
+  background: #fff !important;
+  background-image: none !important;
+  color: #000 !important;
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+body.pdf-export-mode .crt-overlay,
+body.pdf-export-mode .scanline,
+body.pdf-export-mode nav,
+body.pdf-export-mode footer,
+body.pdf-export-mode #btn-back,
+body.pdf-export-mode .section-header {
+  display: none !important;
+}
+
+body.pdf-export-mode .glass-panel {
+  background: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  color: #000 !important;
+}
+
+body.pdf-export-mode .mutation-card {
+  page-break-before: always !important;
+  page-break-inside: avoid !important;
+  /* Force content to stay together */
+  padding: 20px !important;
+  /* Reduced from 30px */
+  border-bottom: 2px solid #000 !important;
+  max-width: 7.5in !important;
+  margin: 0 auto !important;
+  color: #000 !important;
+  background: #fff !important;
+}
+
+body.pdf-export-mode h1,
+body.pdf-export-mode h2,
+body.pdf-export-mode h3 {
+  color: #000 !important;
+  /* Black text */
+  text-shadow:
+    -1px -1px 0 #39ff14,
+    1px -1px 0 #39ff14,
+    -1px 1px 0 #39ff14,
+    1px 1px 0 #39ff14 !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body.pdf-export-mode h4,
+body.pdf-export-mode h5,
+body.pdf-export-mode p,
+body.pdf-export-mode div,
+body.pdf-export-mode span,
+body.pdf-export-mode strong,
+body.pdf-export-mode td,
+body.pdf-export-mode th {
+  color: #000 !important;
+  text-shadow: none !important;
+  font-family: 'Times New Roman', Times, serif !important;
+  background-color: transparent !important;
+}
+
+body.pdf-export-mode .mutation-card h3 {
+  font-size: 18pt !important;
+  /* Reduced from 20pt */
+  border-bottom: 2pt solid #39ff14 !important;
+  text-transform: uppercase !important;
+  margin-bottom: 5px !important;
+  color: #000 !important;
+  text-shadow:
+    -1px -1px 0 #39ff14,
+    1px -1px 0 #39ff14,
+    -1px 1px 0 #39ff14,
+    1px 1px 0 #39ff14 !important;
+}
+
+body.pdf-export-mode .mutation-meta {
+  display: flex !important;
+  background: none !important;
+  border-bottom: 1px solid #000 !important;
+  padding: 3px 0 !important;
+  /* Reduced padding */
+  margin-bottom: 8px !important;
+  font-size: 9pt !important;
+}
+
+body.pdf-export-mode .mutation-meta div {
+  border: none !important;
+  padding: 0 10px 0 0 !important;
+  font-weight: bold !important;
+}
+
+body.pdf-export-mode .mutation-description {
+  line-height: 1.3 !important;
+  /* Tighter line height */
+  margin-bottom: 10px !important;
+  /* Reduced margin */
+  text-align: justify !important;
+  font-size: 9.5pt !important;
+}
+
+body.pdf-export-mode .table,
+body.pdf-export-mode .table th,
+body.pdf-export-mode .table td {
+  border: 0.5pt solid #000 !important;
+  color: #000 !important;
+  background-color: #fff !important;
+  padding: 2px 4px !important;
+  /* Tighter padding */
+  font-size: 8.5pt !important;
+}
+
+body.pdf-export-mode .table-dark {
+  --bs-table-bg: #fff !important;
+  --bs-table-color: #000 !important;
+  background-color: #fff !important;
+}
+
+body.pdf-export-mode .table-dark th {
+  background-color: #eee !important;
+  /* Slightly lighter header */
+  color: #000 !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+}
+
+body.pdf-export-mode .cover-page {
+  border: 10pt double #000 !important;
+  background: #fff !important;
+}
+
+body.pdf-export-mode img {
+  filter: grayscale(100%) contrast(150%) !important;
+}
+
+body.pdf-export-mode hr {
+  border-top: 1px solid #000 !important;
+  opacity: 1 !important;
+}
+
+
+/* Results Display */
+#results-output {
+  margin-top: 2rem;
+}
+
+.mutation-card {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed var(--primary);
+}
+
+.mutation-meta div {
+  background: rgba(57, 255, 20, 0.1);
+  padding: 2px 10px;
+  border: 1px solid var(--primary);
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 10px;
+}

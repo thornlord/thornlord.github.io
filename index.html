@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Refactoring this webpage to be used for Mutant Crawl Classics. Original code by Purple Sorcerer Games.">
+  <meta name="original-author" content="Purple Sorcerer Games">
+  <meta name="author" content="Essar the Arranger">
+  <meta name="system" content="Mutant Crawl Classics">
+
+  <title>MCC MUTATION TERMINAL</title>
+  <!-- font-awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- custom CSS -->
+  <link href="index.css" rel="stylesheet">
+</head>
+
+<body class="theme-glass">
+  <div class="crt-overlay"></div>
+  <div class="scanline"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">MCC Mutation Terminal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button id="btn-theme-toggle" class="btn btn-outline-light nav-link px-3">
+              <i class="fa fa-terminal"></i> Switch to Terminal
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="section-header header-cool">
+    <div class="container">
+      <div class="col-sm-12">
+        <h1 class="page-header">MCC Mutation Terminal</h1>
+        <p class="lead">ACCESSING GLOBAL MUTATION DATABASE... [STATUS: OK]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-4 mb-5">
+    <div class="row">
+      <div class="col-12 glass-panel mb-4 mb-md-0">
+        <form class="form-horizontal" id="mutationForm">
+          <fieldset>
+            <div class="row mb-4">
+              <div class="col-sm-4 text-sm-end col-form-label"><strong>Instructions:</strong></div>
+              <div class="col-sm-8 text-muted mt-2">
+                Create a personalized MCC mutation list using your character's stats.
+              </div>
+            </div>
+
+            <!-- Select Class -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="type">Class</label>
+              <div class="col-sm-5">
+                <select id="type" name="type" class="form-select">
+                  <option value="mutant">Mutant</option>
+                  <option value="manimal">Manimal</option>
+                  <option value="plantient">Plantient</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Select Level -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="level">Level</label>
+              <div class="col-sm-5">
+                <select id="level" name="level" class="form-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Select Method -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="method">Selection Method</label>
+              <div class="col-sm-5">
+                <select id="method" name="method" class="form-select">
+                  <option value="random">Random Mutations</option>
+                  <option value="select">Select Mutations</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Physical Mutations Count -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="physicalCount">Physical Mutations</label>
+              <div class="col-sm-5">
+                <select id="physicalCount" name="physicalCount" class="form-select">
+                  <option value="0">0</option>
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Mental Mutations Count -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="mentalCount">Mental Mutations</label>
+              <div class="col-sm-5">
+                <select id="mentalCount" name="mentalCount" class="form-select">
+                  <option value="0">0</option>
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Dynamic Selection Container (hidden by default) -->
+            <div id="select-container" style="display: none;">
+              <hr class="mb-4 glass-border">
+              <h5 class="mb-3 text-center">Select Your Mutations</h5>
+              <div id="select-physical-container"></div>
+              <div id="select-mental-container"></div>
+              <hr class="mb-4 glass-border">
+            </div>
+
+            <!-- Enter character name -->
+            <div class="row mb-3">
+              <label class="col-sm-4 col-form-label text-sm-end" for="casterName">Character Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="casterName" id="casterName"
+                  placeholder="E.g. Blorg the Many-Eyed">
+              </div>
+            </div>
+
+            <!-- Button -->
+            <div class="row mb-3">
+              <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary mt-3">Generate Mutations!</button>
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- <div class="col-md-4 text-center">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-center align-items-center">
+          <h4 class="mb-4">Support Our Utilities</h4>
+          <p class="text-muted mb-4">If you find this utility helpful for your MCC campaigns, consider supporting the
+            development!</p>
+          <button class="btn btn-success">Support Us</button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  </div>
+
+  <!-- Results Container -->
+  <div id="results-container" class="container-fluid px-4 mt-4" style="display: none;">
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <button id="btn-back" class="btn btn-outline-light me-3"><i class="fa fa-arrow-left"></i> Go Back</button>
+        <button id="btn-download-pdf" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Download & Open
+          PDF</button>
+      </div>
+    </div>
+    <div id="results-output"></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 mb-4">
+          <a class="navbar-brand" href="#">MCC TERMINAL</a>
+          <p class="mt-3">A specialized data portal for Mutant Crawl Classics.</p>
+        </div>
+        <div class="col-sm-6 text-sm-end">
+          <p>©2026 ARCHIVAL SYSTEMS INC.</p>
+          <p class="small">Mutant Crawl Classics and MCC RPG are trademarks of Goodman Games.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <!-- html2pdf -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Custom Logic -->
+  <script src="mutations.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
